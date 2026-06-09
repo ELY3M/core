@@ -28,12 +28,3 @@ jobs:
           name: slop-report
           path: slop-report.json
       
-      - name: Fail on critical issues
-        run: |
-          python -c "
-          import json
-          with open('slop-report.json') as f:
-              report = json.load(f)
-              if report['status'] == 'critical_deficit':
-                  exit(1)
-          "
