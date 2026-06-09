@@ -14,19 +14,13 @@ jobs:
       
       - name: Set up Python
         uses: actions/setup-python@v6
-        with:
-          python-version: '3.10'
       
       - name: Install AI-SLOP Detector
         run: pip install ai-slop-detector
       
       - name: Run slop detection
         run: |
-          slop-detector scan ./src \
-            --format json \
-            --output slop-report.json \
-            --ldr-threshold 0.6 \
-            --inflation-threshold 1.5
+          slop-detector --project . --json --output slop-report.json
       
       - name: Upload report
         uses: actions/upload-artifact@v7
